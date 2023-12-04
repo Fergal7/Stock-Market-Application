@@ -1,0 +1,831 @@
+<!DOCTYPE html><html><head>
+      <title>3_stonks</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/niels/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="stonks">&#x1F680; Stonks &#x1F680;</h1>
+
+<p>After a long wait, we have finally arrived at the epic finale of the ACU (AOOP Cinematic Universe). With the first two assignments done, we should now have a message queue that works over the network. In this assignment, we will be using this message queue to create a simulation of the stock market. Whereas in the previous assignment, the design decisions were served on a silver platter, the silver platter will be (almost) empty for this assignment. We will give you a number of requirements, and it is up to you to make a working program from these requirements. This means that any design decisions are up to you, provided that the requirements are satisfied.</p>
+<h2 class="mume-header" id="deadlines">Deadlines</h2>
+
+<p>For this assignment there are three deadlines:</p>
+<ul>
+<li>
+<p><strong>Intermediate deadline</strong></p>
+<p>This is an optional deadline and provides you with an extra opportunity to get feedback on your code. If you want to make use of this deadline, create an issue for this (<strong>so not a pull request</strong>). Be sure to tag your TA and indicate whether you want a demo as well and whether you would like a code review. Also, indicate specifically what you would like feedback on. Again, this deadline is optional, but you are highly recommended to make use of it due to the complexity of the assignment. Try to complete as much as possible before this deadline.</p>
+</li>
+<li>
+<p><strong>Soft Deadline</strong></p>
+<p>If you fully complete your project and create a valid pull request before this deadline, you will automatically receive a 0.5 bonus. Note that this is in addition to the potential bonus point, so you can earn 1.5 bonus points in total. You should aim for this deadline, as the hard deadline is during the exam week.</p>
+</li>
+<li>
+<p><strong>Hard Deadline</strong><br>
+This is the final deadline. Your entire program should be done at this point.</p>
+</li>
+</ul>
+<hr>
+<h1 class="mume-header" id="introduction">Introduction</h1>
+
+<p>Throughout this assignment, we use both the terms &quot;stocks&quot; and &quot;shares&quot;. A stock is a generic term for the collection of shares for a single company. The shares are the actual &quot;ownership pieces&quot; of that company you can buy.</p>
+<p>Traders can trade shares by sending buy or sell orders to the exchange. The exchange keeps track of all the buy and sell orders (the bids and asks).</p>
+<p>In the real world, there are many order types, but for this assignment, the order type you will be implementing are limit orders. An order contains information about which stock to buy, how many shares, and - in the case of limit orders - at what price. The role of the price in a limit order depends on whether it is a buy or a sell order:</p>
+<ul>
+<li>For buy orders, the price in a limit order denotes the maximum share price the trader wishes to buy their shares at.</li>
+<li>For sell orders, the price in a limit order denotes the minimum share price a trader wishes to sell their shares for.</li>
+</ul>
+<p>When a new order comes in, it will first try to match it against existing orders. For sell orders, this means finding the buy order with the highest price (provided that this price is higher than the limit price). For buy orders, this means finding the sell order with the lowest price (provided that this price is lower than the limit price). The exchange will keep trying to do this until the order is resolved. When no matching orders can be found (anymore), the buy/sell order should be added to the bids/asks.<br>
+Each time an order is (partially) resolved, the transaction is added to the transaction history of the trader that placed the order. A transaction contains information on how many of which stock was traded for how much.</p>
+<p>The price of a stock is updated whenever a sell order for that stock (partially) resolves. The price is then updated to the price that was paid at the latest transaction. As an example, suppose we have a sell order in our asks for 10 shares at $208. This means the seller is prepared to sell the stock for a minimum of $208. When a new buy order comes with a limit price of $204, the order cannot be matched, since the buyer is only prepared to pay at most $204. As such, this buy order is added to the bids. When another buy order comes in for 10 shares with a price limit of $209, it will be matched with the existing sell order for the price of the sell order. This means the order will be resolved for $208 dollars and the price of the stock is updated to $208 (since this is the price of the latest transaction). Similarly, if a sell order for $202 would come in, it would be matched against the buy order of $204, and the price of the stock is updated to $204.</p>
+<p>While you only need to worry about limit orders, you should design your program in such a way that adding support for more order types is relatively easy.</p>
+<p>Concretely, the above means that a stock exchange is keeping track of the following:</p>
+<ul>
+<li>Information about the stocks.</li>
+<li>Information about the orders (bids and asks).</li>
+<li>Information about each trader.</li>
+</ul>
+<h2 class="mume-header" id="assignment-information">Assignment information</h2>
+
+<p>The stock market you will be simulating is a heavily simplified version of how the stock market functions in the real world. In this assignment, the entire stock market consists of only two parts: the <strong>stock exchange</strong> and the <strong>traders</strong>.</p>
+<p>The stock of a company has the following information available:</p>
+<ul>
+<li><strong>Symbol</strong>: A unique identifier for the stock. Often resembles the name of the company.</li>
+<li><strong>Name</strong>: The name of the corporation behind the stock.</li>
+<li><strong>Shares Outstanding</strong>: The number of shares that are held by all its shareholders.</li>
+<li><strong>Price</strong>: The price of a single share. As detailed later on, this is the price of its latest transaction.</li>
+<li><strong>Market Capitalization</strong>: The total market value of the company&apos;s outstanding shares. Calculated as <code>market cap = shares outstanding * price</code>.</li>
+</ul>
+<p>The code you will create for this simulation will not run as one application, but instead as two independent applications. The exchange should be one application and all the traders (bots) are run and managed by another application. This means that these components have their own <code>main()</code> methods. Running these two applications can easily be done via the <a href="https://plugins.jetbrains.com/plugin/7248-multirun">MultiRun</a> plugin for IntelliJ.</p>
+<p>The communication between the two applications will happen via networking. To do this, you will be making use of the message queue and the <code>networking</code> module you created in the previous assignment.</p>
+<p>Before you start, we highly advise you to fully read through the assignment and create a simple diagram of how your program will work. This will make it significantly easier to properly structure your project. As this is a large project, it is very important to first think before you start coding.</p>
+<p>We have provided two additional modules for you in this assignment: the <code>stock-market-ui</code> and the <code>util</code> modules. Other than this, you will have to create your own modules. When doing so, don&apos;t forget to create a <code>module-info</code> and a base package to work in.</p>
+<hr>
+<h1 class="mume-header" id="1-stock-application-requirements">1 - Stock Application Requirements</h1>
+
+<p>We will start with the application that is responsible for the stock exchange itself and handling incoming and outgoing messages. We will refer to this as the <code>Stock Application</code>. The requirements are as follows:</p>
+<ul>
+<li>The <code>Stock Application</code> should be able to start up a networked message queue.
+<ul>
+<li>If you did not manage to fully finish the previous assignment and do not have time to finish it, you can implement the assignment without the message queue. This will come with a penalty, but it should allow you to finish the assignment.</li>
+<li>You are allowed to assume that the message queue will always run &quot;locally&quot; in the <code>Stock Application</code> (although it would be nice if you cannot manage to not make this assumption).</li>
+</ul>
+</li>
+<li>All incoming stock orders are assumed to arrive via a message queue.</li>
+<li>The <code>Stock Application</code> should continously poll the message queue.</li>
+<li>The <code>Stock Application</code> should have support for executing the following orders:
+<ul>
+<li>Buy limit orders</li>
+<li>Sell limit orders</li>
+</ul>
+</li>
+<li>The exchange should attempt to resolve the orders as detailed above.</li>
+<li>The <code>Stock Application</code> should keep track of all connected clients.</li>
+<li>The <code>Stock Application</code> should periodically send the following information to all connected clients:
+<ul>
+<li>The information of all the stocks. The traders need (at the very least) the following information of each stock:
+<ul>
+<li>The stock symbol</li>
+<li>The price</li>
+</ul>
+</li>
+<li>The information of the trader in question. This includes (at the very least) the following:
+<ul>
+<li>Their name</li>
+<li>Their id</li>
+<li>The stocks that they own and how many</li>
+<li>Their available funds</li>
+</ul>
+</li>
+<li>These updates should be send roughly every second.</li>
+</ul>
+<blockquote>
+<p>In a web application, the info of all users is not stored in your browser. It is stored on a server somewhere and your own info is sent to you when you log in. We follow a similar approach in this assignment. The info of all the traders is stored in the stock application and the info of a particular trader is periodically sent to them after they connect.</p>
+</blockquote>
+</li>
+<li>The port number(s) that the <code>Stock Application</code> uses it should get from an environment variable. This can be done, for example, as follows:<pre data-role="codeBlock" data-info="java" class="language-java">port <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">&quot;MESSAGE_QUEUE_PORT&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>If the environment variable does not exist, you can fall back on a pre-determined (hard-coded) port.
+<blockquote>
+<p>You don&apos;t need to actively do anything with the environment variables yet; just make sure your code supports them.</p>
+</blockquote>
+</li>
+<li>The <code>Stock Application</code> should initialise the existing stocks from the provided <code>stocks.yaml</code> file. You are free to move the file anywhere or change its format (or add more data), as long as the data somehow ends up in your application.</li>
+<li>The <code>Stock Application</code> should initialize a number of traders from the provided <code>trader.yaml</code> file (provided in the <code>2022_Assignments</code> repository or create your own). You are free to move the file anywhere or change its format (or add more data), as long as the data somehow ends up in your application.</li>
+</ul>
+<h3 class="mume-header" id="notes-on-loading-from-yaml">Notes on loading from YAML</h3>
+
+<p>To load in YAML files, you can use <a href="https://github.com/FasterXML/jackson">Jackson</a>. How to use this was shown in one of the tutorials. Alternatively, you could look at the following <a href="https://www.baeldung.com/jackson-yaml">online tutorial</a>. Note that we have already provided a <code>YamlLoader</code> class in a <code>util</code> module that you can use for mapping the YAML file to an object.</p>
+<p>Similar to Gson, in order to get Jackson to work with our module structure, we need to <code>open</code> the package of the class we are trying to load to the Jackson library. Suppose the class we are trying to load is located in a package called <code>stocks</code> in an <code>example</code> module, then we would have to add the following at the end of the <code>module-info.java</code> of the <code>example</code> module:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword keyword-opens">opens</span> <span class="token namespace">nl<span class="token punctuation">.</span>rug<span class="token punctuation">.</span>aoop<span class="token punctuation">.</span>example<span class="token punctuation">.</span>stocks</span> <span class="token keyword keyword-to">to</span> <span class="token namespace">com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind</span><span class="token punctuation">;</span>
+</pre><h3 class="mume-header" id="view">View</h3>
+
+<p>The exchange should have a very simple view that displays some information about each stock. To save you some time and effort on this, we have already provided a basic view implementation for you. To make use of this implementation, you need to implement the following interfaces from the <code>stock-market-ui</code> module:</p>
+<ul>
+<li><code>StockDataModel</code></li>
+<li><code>StockExchangeDataModel</code></li>
+<li><code>TraderDataModel</code></li>
+</ul>
+<p>You can then start up the ui using the <code>SimpleViewFactory</code> class.</p>
+<p>If you want, you can add more things to the view yourself. Do not spend too much time on this, as we won&apos;t be grading the visual quality of your view. Note that you don&apos;t necessarily need to keep or use all of the classes/interfaces we provide you. If you prefer to start from scratch then you are allowed to do so. For a more advanced (and fun) view, see the bonus.</p>
+<hr>
+<h1 class="mume-header" id="2-trader-application-requirements">2 - Trader Application Requirements</h1>
+
+<p>The other application we are creating is the <code>Trader Application</code>. This application is responsible for spawning a number of bots that interact with the <code>Stock Application</code> This has the following requirements:</p>
+<ul>
+<li>Each trader should continuously listen for messages from the <code>Stock Application</code>. The kind of messages that it should be able to handle are:
+<ul>
+<li>The information of all the stocks.</li>
+<li>The information of the trader in question.</li>
+</ul>
+</li>
+<li>Each trader keeps track of the following:
+<ul>
+<li>Their name</li>
+<li>Their id</li>
+<li>The stocks that they own and how many</li>
+<li>Their available funds</li>
+</ul>
+</li>
+<li>The trader information should be updated whenever a relevant update is received from the <code>Stock Application</code></li>
+<li>Each trader bot should send a stock order to the message queue of the <code>Stock Application</code> every <code>x</code> seconds. How often exactly can be randomized; e.g. something between 1 and 4 seconds.</li>
+<li>The stock order that a trader bot made is determined by a trading strategy (more on this later).</li>
+<li>Trader bots should run on separate threads.</li>
+<li>To determine the port number(s) to connect to, the <code>Trader Application</code> should look at the environment variable with the same name as the ones used in the <code>Stock Application</code>. If this is not available, it should fall back on the pre-determined port(s).</li>
+</ul>
+<blockquote>
+<p>Hint: as various parts of your program run on different threads, it might happen that your program stalls at points without producing an error. If this is the case, try wrapping parts of your functionality in try-catch statements and logging any errors.</p>
+</blockquote>
+<h3 class="mume-header" id="trade-strategies">Trade Strategies</h3>
+
+<p>Determining what kind of order can be made can be quite complicated. Luckily, you don&apos;t have to write a complicated algorithm for this; a simple random strategy is perfectly fine. An example strategy could be:</p>
+<ol>
+<li>Choose randomly between buying and selling.</li>
+<li>Choose a random stock.</li>
+<li>Choose a random amount.</li>
+</ol>
+<p>The limit price can be determined by slightly randomizing the current stock price. In the case of buy orders, traders should put the price slightly higher than the current price. In the case of sell orders, traders should put the price slightly lower than the current price.</p>
+<p>Pay attention that the trader cannot sell stocks they do not own. When a trader makes a sell order, the shares will stay in their portfolio until that order is resolved and the trader is informed. As such, they should not be able to sell those same shares again while the order has not been resolved yet (as this would mean you could sell the same share twice). A trader bot should also not be able to buy stocks it does not have the money for.</p>
+<blockquote>
+<p>Important: while you only need to add a single trade strategy, you should design your program in such a way that it would be easy to add more strategies.</p>
+</blockquote>
+<h1 class="mume-header" id="3-bonus">3 - Bonus</h1>
+
+<p>For the bonus, you should have a look at the <code>deployment</code> branch in your GitHub repository. If the branch is not there yet, it will be added in due time.</p>
+<h1 class="mume-header" id="final-check">Final Check</h1>
+
+<p>Verify that stock prices updates and that your program does not randomly crash or produce errors. Also, make sure to test your program thoroughly. Try to aim for high test coverage (cover as many methods as possible) and for the more important methods also try to cover most of the edge cases.</p>
+<h1 class="mume-header" id="report">Report</h1>
+
+<p>Usually, any GitHub repository is accompanied by a <code>README.md</code> which explains some of the basic stuff about the code in the repository. Up to now, the <code>README.md</code> files have been mostly used as the assignment descriptions. As we want you to have an idea of how to do this and prepare you for the future, you will be required to have such a file in your repository (more specifically, in the directory of this assignment).</p>
+<p>We have already done some of the work for you, so you can find a template markdown file in your repository. Please fill in any sections indicate with a comment. We included some expected lengths with each section, but these are by no means set in stone. The general rule is that the section should be long enough so that it discusses what is asked in that specific section. Don&apos;t forget that you can (and might want to) add subsections.<br>
+If you are not familiar with markdown, don&apos;t worry as it is extremely easy to learn. A very useful guide can be found <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">here</a></p>
+<h3 class="mume-header" id="additional-info">Additional info</h3>
+
+<p>The template of your README file was taken from <a href="https://github.com/othneildrew/Best-README-Template/blob/master/BLANK_README.md">here</a>. We slightly adjusted this to better fit this assignment. Be aware that we also removed some stuff that is not very relevant for this assignment (although normally you would still want this in your readme!). There are many different ways to structure your README and this is by no means the perfect one.</p>
+<p>The purpose of this is not to have you spend a bunch of time on creating the perfect README, but rather to prepare you for future projects where you actually have to add such a file. Hopefully, this gives you an idea of what kind of stuff is usually done in the README. Try to focus primarily on the sections mentioned above, as those are the most important for this assignment.</p>
+<h1 class="mume-header" id="peer-evaluation">Peer Evaluation</h1>
+
+<p>For us to get an idea of how the group work went, you need to fill in a peer evaluation form. In this form, you will evaluate both yourself and your partner. We will look at this form to determine whether there are any significant issues with the group work. As a general tip: communicate clearly and often with each other and try to work together in person whenever you can.</p>
+<p>You can find this form on BrightSpace. For this assignment, there are two forms: one for the intermediate deadline and one for the final deadline. Filling in <strong>both</strong> of these forms is <strong>mandatory</strong> (regardless of whether you decide to make use of the optional deadline or not), so don&apos;t forget it. The deadline for filling in the first form is one day after the intermediate deadline, and the deadline for the second form is one day after the final (hard) deadline.</p>
+<h1 class="mume-header" id="handing-in-grading">Handing in + Grading</h1>
+
+<p>To hand in your work, you have to create a pull request in your repository on GitHub. However, before you do this, verify the following:</p>
+<ul>
+<li>All your work is on GitHub;</li>
+<li>You followed the project structure we provided correctly;</li>
+<li>Your test methods are <code>public</code>;</li>
+<li>Running <code>mvn clean test</code> builds your project successfully and runs all your tests.</li>
+</ul>
+<p>Once you have verified all of the above, you can create a pull request from the <code>stonks</code> branch into the <code>main</code> branch. Make sure that a green checkmark appears next to your pull request.</p>
+<p>The point distribution for your grade will look as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th style="text-align:center">Max points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Functionality</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>Design</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Documentation &amp; Code Quality</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Report(readme)</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Bonus</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Delivering before soft deadline</td>
+<td style="text-align:center">0.5</td>
+</tr>
+</tbody>
+</table>
+<p>More information about handing in can be found in the <code>GitHub Manual</code> on BrightSpace.</p>
+<h1 class="mume-header" id="checkstyle">Checkstyle</h1>
+
+<p>Below you can find a table with all of the checks performed by GitHub. Your code should pass all of these checks for your pull request to be accepted. You do not need to read through every single check, but you can use this table to quickly find the documentation when you encounter a given checkstyle violation. In addition to the checks below, it will also check whether your program actually compiles properly and passes all tests.</p>
+<blockquote>
+<p>One final warning: don&apos;t postpone running these checks until a few minutes before the deadline. It might take quite some time to fix all of them.</p>
+</blockquote>
+<h2 class="mume-header" id="general">General</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LineLength">LineLength</a></td>
+<td>Lines cannot be longer than 120 characters</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#FileLength">FileLength</a></td>
+<td>Files cannot be longer than 400 lines. Note that this is the absolute maximum. Without including Javadoc, strive for at most 200.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="code-quality">Code Quality</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#MethodLength">MethodLength</a></td>
+<td>Methods can have a maximum length of 30 lines. Note that this is the absolute maximum. You should strive for a maximum of ~20 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LambdaBodyLength">LambdaBodyLength</a></td>
+<td>Lambda bodies can have a maximum size of 15 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyBlock">EmptyBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#LeftCurly">LeftCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#RightCurly">RightCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#NeedBraces">NeedBraces</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DeclarationOrder">DeclarationOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#FallThrough">FallThrough</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalCatch">IllegalCatch</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalThrows">IllegalThrows</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalToken">IllegalToken</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalType">IllegalType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#InnerAssignment">InnerAssignment</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#MultipleStringLiterals">MultipleStringLiterals</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NoClone">NoClone</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#ReturnCount">ReturnCount</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterOuterTypeDeclaration">UnnecessarySemicolonAfterOuterTypeDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">UnnecessarySemicolonAfterTypeMemberDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInEnumeration">UnnecessarySemicolonInEnumeration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInTryWithResources">UnnecessarySemicolonInTryWithResources</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">UnnecessaryCheckstyleLink</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InnerTypeLast">InnerTypeLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType">InterfaceIsType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#MutableException">MutableException</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#ModifierOrder">ModifierOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#RedundantModifier">RedundantModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride">MissingOverride</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#GenericWhitespace">GenericWhitespace</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#MethodParamPad">MethodParamPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#RedundantImport">RedundantImport</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#UnusedImports">UnusedImports</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#Indentation">Indentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#ConstantName">ConstantName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast">DefaultComesLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#InvalidJavadocPosition">InvalidJavadocPosition</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#MethodName">MethodName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
+<td>Maximum of 3 nested if-statements.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#TypeName">TypeName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber">ParameterNumber</a></td>
+<td>Maximum of 7 parameters.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier">VisibilityModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#AvoidNoArgumentSuperConstructorCall">AvoidNoArgumentSuperConstructorCall</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="javadoc">Javadoc</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType">JavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocContentLocation">JavadocContentLocationCheck</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocBlockTagLocation">JavadocBlockTagLocation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingLeadingAsterisk">JavadocMissingLeadingAsterisk</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

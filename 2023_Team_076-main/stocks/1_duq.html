@@ -1,0 +1,743 @@
+<!DOCTYPE html><html><head>
+      <title>1_duq</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/niels/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="assignment-1-duq">Assignment 1: DUQ</h1>
+
+<p>In this first assignment, you will be creating the basic infrastructure of our own (very) basic message queue: the Data Utility Queue (DUQ). In assignment 2, you will be extending your code by adding networking and threading support to this message queue. In the final assignment, you will be using the message queue and networking functionality to build a simulation of a (simplified) stock market. Since each assignment is a continuation of the previous one, you will work on a single project called <code>stocks</code>.</p>
+<p>Note that this first assignment also serves as the introductory assignment to the course. As such, this assignment is not a representative indication of the difficulty of the next two assignments; these will require significantly more work. Before you start, read through the Testing chapter of the reader. Throughout this course we expect you to use JUnit 5.</p>
+<p>To start, clone your repository, checkout the <code>duq</code> branch, and open the given project in an IDE of your choice (<em>cough</em> IntelliJ <em>cough</em>). Most modern IDEs allow you to open the project by opening the <code>pom.xml</code> file (pay attention that you open the <code>pom.xml</code> file in the <code>stocks</code> directory, not any of the <code>pom.xml</code> files in the subdirectories of this directory). Opening the <code>pom.xml</code> file means you won&apos;t have to create a new project yourself, so this saves us some effort.</p>
+<h2 class="mume-header" id="important">Important</h2>
+
+<p>Object-oriented programming is about managing complexity, so good code quality is crucial. Several automated checks performed on your commits that ensure that your code quality meets a certain standard. <strong>Without passing these checks, your submission will not be accepted</strong>. A failed check can be compared to passing 0 test cases on Themis. The checks are only performed on commits that are part of an open pull request.</p>
+<p>The performed checks are quite rigorous, so it is important that you frequently run <code>mvn clean test</code>. Note that this is slightly different from <code>mvn clean compile</code> in that it will also run all the tests. If any of the tests fail, so will the build.</p>
+<p>Details about which checks are performed can be found at the end of this document. This table also contains links to the documentation of each of the checks. The documentation often contains examples of code that fails the check. Since the majority of the errors indicate the exact file and line number where the check failed, you should be able to fix the vast majority of the errors produced by this automatic check very quickly. The usual exceptions to this are the checks on the file length and the method length since these often indicate deeper design issues. If you get stuck on a given check and don&apos;t know how to fix it (<strong>after reading the documentation!</strong>), don&apos;t hesitate to ask your TA.</p>
+<blockquote>
+<p>Incorrect formatting can produce a lot of checkstyle violations. To prevent this, frequently use the <a href="https://www.jetbrains.com/help/idea/reformat-and-rearrange-code.html">reformat code</a> functionality of IntelliJ.</p>
+</blockquote>
+<p>To ensure the checks always run properly, you are not allowed to modify the <code>.checkstyle</code> and <code>.github</code> directories. Additionally, you are also not allowed to modify the <code>pom.xml</code> file. Making modifications to these files/directories will result in your pull request being rejected.</p>
+<blockquote>
+<p>Pay attention that you don&apos;t make any accidental changes to them (or to the general directory structure). Should this happen, please inform your TA and they will help you revert the file to a previous commit.</p>
+</blockquote>
+<h2 class="mume-header" id="project-structure">Project structure</h2>
+
+<p>The project you will be working with throughout the course is a Maven project. You may have noticed that there are two <code>pom.xml</code> files in the code structure we provided to you. That is because this project is divided into separate modules. You can think of a module as a sort of sub-project that contains a number of related packages. The advantage of using modules is that it allows us to split very large and complex projects into smaller - more manageable - chunks.</p>
+<p>Modules provide very strict encapsulation in the sense that packages within a module are only visible to other modules when it explicitly exports them. This has the advantage that it forces you to think very clearly about what parts of your module you expose, and which modules depend on what other modules. This forces you to think better about the coupling between modules and generally improves the design of your program.</p>
+<p>Exposing parts of a module to another module is done via a file called <code>module-info.java</code> that resides in every module. In this first assignment, you do not need to modify the project structure. You shouldn&apos;t add new modules, and you shouldn&apos;t modify the <code>module-info.java</code> or any of the <code>pom.xml</code> files. In short, you don&apos;t need to alter the module structure for this assignment. More information on modules will follow in later lectures/tutorials.</p>
+<h2 class="mume-header" id="message-queues">Message queues</h2>
+
+<p><img src="images/mq.png" alt="Message Queue"></p>
+<p>In this assignment, you will be creating a simple message queue. Message queues are widely used in cloud applications. Think of a large number of services (components/applications/nodes, whatever you want to call them) that are all connected and communicating with each other in various ways via a network. Message queues can be inserted into this web of components to simplify the communication and improve performance. There are numerous other benefits to using a message queue, which you can read more about <a href="https://aws.amazon.com/message-queue/benefits/">here</a>.</p>
+<p>What you should understand at a basic level is that a message queue is an intermediary service whose main job is to take messages from one or more components (publishers/producers) and reliably deliver them to one or more other components (subscribers/consumers). Some of the services that are widely used as message queues nowadays are <a href="https://kafka.apache.org/intro">Apache Kafka</a>, <a href="https://www.rabbitmq.com/tutorials/tutorial-one-java.html">RabbitMQ</a>, and <a href="https://www.ibm.com/docs/en/ibm-mq/8.0?topic=overview-introduction-mq">IBM MQ</a>.</p>
+<p>A message queue generally consists of at least 4 parts:</p>
+<ul>
+<li>Messages</li>
+<li>A queue</li>
+<li>Producers</li>
+<li>Consumers</li>
+</ul>
+<p>There are many different possible implementations of message queues and they generally provide much more functionality than just the delivery of messages. In this assignment, you will be creating a relatively simple poll-based message queue. This message queue has a producer-consumer structure where producers can <code>put</code> something in the message queue and consumers can <code>poll</code> the message queue to retrieve the first message in the queue. The main purpose of the message queue implementation in this course is the decoupling of components and simplification of the networking.</p>
+<h2 class="mume-header" id="assignment-description">Assignment Description</h2>
+
+<p>The aim of this assignment is to be an introduction to testing. That means that we expect you to use test-driven development. That means that you should divide this assignment into four stages:</p>
+<ol>
+<li>Reading the requirements and thinking of which components you need (drawing a diagram helps);</li>
+<li>Writing the tests for all the classes you need;</li>
+<li>Writing the implementations;</li>
+<li>Refactoring.</li>
+</ol>
+<p>The most important thing is creating the tests first and writing the corresponding implementation later. One of the reasons for this is that it forces you to think of your tests in terms of concrete input and output, and not implementation-dependent details.</p>
+<p>Below we will give the requirements of the message queue. It is up to you to produce a program from these requirements. In some cases, we will suggest you to use a certain existing class/interface. In those cases, we will not provide an explanation of how to work with them. This is something that you have to (learn to) figure out yourself.</p>
+<blockquote>
+<p>Make sure to test every method! Try to think of various test cases. Think of what happens when e.g. an invalid argument is given to a method or what if you execute a method multiple times, etc. Be sure to follow the proper JUnit conventions as described in the reader.</p>
+</blockquote>
+<p><strong>Messages</strong></p>
+<ul>
+<li>A message has a <code>header</code>, a <code>body</code>, and a <code>timestamp</code>. Both the <code>header</code> and <code>body</code> are strings. For the <code>timestamp</code>, you can use the <code>LocalDateTime</code> class. Note that the header is not necessarily a unique identifier; it is perfectly fine to have two messages with the same <code>header</code> in the same queue.</li>
+<li>Messages must be immutable. That means that it should not be possible to modify their contents after creation.</li>
+<li>Create a constructor that only takes a <code>header</code> and <code>body</code>. The timestamp should be set to the current time.</li>
+</ul>
+<p><strong>Queues</strong></p>
+<ul>
+<li>
+<p>Any message queue should expose at least the following three methods:</p>
+<ul>
+<li><code>enqueue</code>: allows users to add a message to the message queue.</li>
+<li><code>dequeue</code>: returns (and removes) the oldest message in the message queue.</li>
+<li><code>getSize</code>: returns the number of messages currently in the message queue.</li>
+</ul>
+</li>
+<li>
+<p>Just as the <code>List</code> interface has various implementations, such as <code>LinkedList</code> and <code>ArrayList</code>, we also want our message queue to have various implementations. There should be two different queue implementations:</p>
+<ul>
+<li>
+<p><strong>An &quot;unordered&quot; message queue</strong>: in this queue, messages should be ordered <em>based on when they arrive</em>.</p>
+</li>
+<li>
+<p><strong>An ordered message queue</strong>: in this queue, messages are ordered <em>by their timestamp</em>. That means that messages are not necessarily always inserted at the end of the queue.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>In the end, we should be able to do something along the lines of:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token class-name">MessageQueue</span> unorderedQueue <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">UnOrderedMessageQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>or</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token class-name">MessageQueue</span> orderedQueue <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">OrderedMessageQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Of course, the implementations need some sort of data structure to store the messages. You could use a <code>List</code> for this (as you are probably used to), but this can be quite tedious. Instead, you can use the built-in <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html">Queue</a> data structure (e.g. with a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html">LinkedList</a> implementation) to store the messages in the unordered message queue and the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/SortedMap.html">SortedMap</a> data structure, (e.g. with a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/TreeMap.html">TreeMap</a> implementation) to store the messages in the ordered message queue.</p>
+<blockquote>
+<p>Hint: if you&apos;re using a map, think about what happens if you add a message whose key already exists in the queue, and how you should deal with this.</p>
+</blockquote>
+<p>Note that operations on the queues should be checked for edge cases; it should not be possible to insert <code>null</code>, for example.</p>
+<h3 class="mume-header" id="producer-consumer">Producer Consumer</h3>
+
+<ul>
+<li>Create two interfaces: <code>MQProducer</code> and <code>MQConsumer</code>. An <code>MQProducer</code> should be able to <code>put</code> and an <code>MQConsumer</code> should be able to <code>poll</code>.</li>
+<li>Create two simple implementations (one implementation for each of the two interfaces) that communicate with a <code>MessageQueue</code> simply through a reference (i.e. have a <code>MessageQueue</code> as argument in their constructors).</li>
+</ul>
+<h1 class="mume-header" id="questions">Questions</h1>
+
+<p>For every assignment, there are a number of questions that you have to answer. These can be found in a file called <code>1_questions.md</code>. The quality of your answers influences your grade. You should provide your answers in the <code>1_questions.md</code> file as well. These questions might also be asked during the demos and can alter your obtained grade!</p>
+<h1 class="mume-header" id="peer-evaluation">Peer Evaluation</h1>
+
+<p>For us to get an idea of how the group work went, you need to fill in a peer evaluation form. In this form, you will evaluate both yourself and your partner. We will look at this form to determine whether there are any significant issues with the group work. As a general tip: communicate clearly and often with each other and try to work together in person whenever you can.</p>
+<p>You can find this form on BrightSpace. Filling in this form is mandatory, so don&apos;t forget it. The deadline for filling in this form is one day after the deadline of the assignment.</p>
+<h1 class="mume-header" id="handing-in-grading">Handing in + Grading</h1>
+
+<p>To hand in your work, you have to create a pull request in your repository on GitHub. However, before you do this, verify the following:</p>
+<ul>
+<li>All your work is on GitHub;</li>
+<li>You followed the project structure we provided correctly;</li>
+<li>Running <code>mvn clean test</code> builds your project successfully.</li>
+</ul>
+<p>Once you have verified all of the above, you can create a pull request from the <code>duq</code> branch into the <code>main</code> branch. Make sure that a green checkmark appears next to your pull request.</p>
+<p>The point distribution for your grade will look as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th style="text-align:center">Max points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free point</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Functionality</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Clean code/code quality</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Answers to the questions</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>More information about handing in can be found in the <code>GitHub Manual</code> on BrightSpace.</p>
+<h1 class="mume-header" id="checkstyle">Checkstyle</h1>
+
+<p>Below you can find a table with all of the checks performed by GitHub. Your code should pass all of these checks for your pull request to be accepted. You do not need to read through every single check, but you can use this table to quickly find the documentation when you encounter a given checkstyle violation. In addition to the checks below, it will also check whether your program actually compiles properly and passes all tests.</p>
+<blockquote>
+<p>One final warning: don&apos;t postpone running these checks until a few minutes before the deadline. It might take quite some time to fix all of them.</p>
+</blockquote>
+<h2 class="mume-header" id="general">General</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LineLength">LineLength</a></td>
+<td>Lines cannot be longer than 120 characters</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#FileLength">FileLength</a></td>
+<td>Files cannot be longer than 400 lines. Note that this is the absolute maximum. Without including Javadoc, strive for at most 200.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="code-quality">Code Quality</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#MethodLength">MethodLength</a></td>
+<td>Methods can have a maximum length of 30 lines. Note that this is the absolute maximum. You should strive for a maximum of ~20 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LambdaBodyLength">LambdaBodyLength</a></td>
+<td>Lambda bodies can have a maximum size of 15 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyBlock">EmptyBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#LeftCurly">LeftCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#RightCurly">RightCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#NeedBraces">NeedBraces</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DeclarationOrder">DeclarationOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#FallThrough">FallThrough</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalCatch">IllegalCatch</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalThrows">IllegalThrows</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalToken">IllegalToken</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalType">IllegalType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#InnerAssignment">InnerAssignment</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#MultipleStringLiterals">MultipleStringLiterals</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NoClone">NoClone</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#ReturnCount">ReturnCount</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterOuterTypeDeclaration">UnnecessarySemicolonAfterOuterTypeDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">UnnecessarySemicolonAfterTypeMemberDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInEnumeration">UnnecessarySemicolonInEnumeration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInTryWithResources">UnnecessarySemicolonInTryWithResources</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">UnnecessaryCheckstyleLink</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InnerTypeLast">InnerTypeLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType">InterfaceIsType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#MutableException">MutableException</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#ModifierOrder">ModifierOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#RedundantModifier">RedundantModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride">MissingOverride</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#GenericWhitespace">GenericWhitespace</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#MethodParamPad">MethodParamPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#RedundantImport">RedundantImport</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#UnusedImports">UnusedImports</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#Indentation">Indentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#ConstantName">ConstantName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast">DefaultComesLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#InvalidJavadocPosition">InvalidJavadocPosition</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#MethodName">MethodName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
+<td>Maximum of 3 nested if-statements.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#TypeName">TypeName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber">ParameterNumber</a></td>
+<td>Maximum of 7 parameters.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier">VisibilityModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#AvoidNoArgumentSuperConstructorCall">AvoidNoArgumentSuperConstructorCall</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="javadoc">Javadoc</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType">JavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocContentLocation">JavadocContentLocationCheck</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocBlockTagLocation">JavadocBlockTagLocation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingLeadingAsterisk">JavadocMissingLeadingAsterisk</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

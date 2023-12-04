@@ -1,0 +1,17 @@
+name: Group Issue
+description: Request help regarding a problem with your group.
+title: "[Group Issue]: "
+labels: ["group issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a clear and concise description of your question/issue.
+      placeholder: Provide a clear and concise description of your question/issue.
+    validations:
+      required: true

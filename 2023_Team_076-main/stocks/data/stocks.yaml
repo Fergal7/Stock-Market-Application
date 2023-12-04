@@ -1,0 +1,56 @@
+stocks:
+  NVDA:
+    symbol: NVDA
+    name: NVIDIA Corporation
+    sharesOutstanding: 2496000000
+    initialPrice: 222.42
+  AMD:
+    symbol: AMD
+    name: Advanced Micro Devices, Inc.
+    sharesOutstanding: 121965282
+    initialPrice: 106.22
+  AAPL:
+    symbol: AAPL
+    name: Apple Inc.
+    sharesOutstanding: 16530166000
+    initialPrice: 148.79
+  INTC:
+    symbol: INTC
+    name: Intel Corp.
+    sharesOutstanding: 4057000000
+    initialPrice: 54.83
+  MSFT:
+    symbol: MSFT
+    name: Microsoft Corp.
+    sharesOutstanding: 7514891248
+    initialPrice: 305.22
+  TSLA:
+    symbol: TSLA
+    name: Tesla Inc.
+    sharesOutstanding: 990015158
+    initialPrice: 756.99
+  AMZN:
+    symbol: AMZN
+    name: Amazon.com Inc.
+    sharesOutstanding: 506440520
+    initialPrice: 3488.24
+  MRNA:
+    symbol: MRNA
+    name: Moderna Inc.
+    sharesOutstanding: 403646312
+    initialPrice: 440.65
+  ADBE:
+    symbol: ADBE
+    name: Adobe Systems Inc.
+    sharesOutstanding: 476400000
+    initialPrice: 665.11
+  FB:
+    symbol: FB
+    name: Facebook Inc.
+    sharesOutstanding: 2819444501
+    initialPrice: 373.06
+  AOOP:
+    symbol: AOOP
+    name: Bagel Inc.
+    sharesOutstanding: 69420
+    initialPrice: 123.45

@@ -1,0 +1,25 @@
+name: Contact
+description: Contact your teammate.
+title: "[Contact]: "
+labels: ["contact"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your teammate(s) with @ mentions, so they get notified!
+  - type: input
+    id: contact
+    attributes:
+      label: My Contact Details
+      description: How can your teammate contact you ?
+      placeholder: email@student.rug.nl
+    validations:
+      required: true
+  - type: textarea
+    id: self-intro
+    attributes:
+      label: Self Introduction
+      description: Tell your teammate a bit about yourself.
+      placeholder: Hello my name is ... and I am a ... student at the University of Groningen.
+    validations:
+      required: true

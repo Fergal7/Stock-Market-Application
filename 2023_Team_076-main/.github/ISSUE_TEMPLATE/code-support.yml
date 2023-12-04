@@ -1,0 +1,39 @@
+name: Code Support
+description: Request help with your code/project.
+title: "[Code Support]: "
+labels: ["code support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment-code-support
+    attributes:
+      label: Assignment
+      description: What assignment are you asking about?
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: dropdown
+    id: read-doc
+    attributes:
+      label: Read the documentation
+      description: Did you Google the issue and read the documentation?
+      options:
+        - "Yes"
+        - "No"
+        - "NA"
+    validations:
+      required: true
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Provide a clear and concise description of the question you have about your code.
+      placeholder: A clear and concise description of the problem in your code you need help with.
+    validations:
+      required: true

@@ -1,0 +1,94 @@
+- id: "bot1"
+  name: "3laoi"
+  funds: 10450
+  stockPortfolio:
+    ownedShares:
+      NVDA: 3
+      AMD: 23
+      AAPL: 15
+      ADBE: 1
+      FB: 3
+- id: "bot2"
+  name: "Susie Imposter"
+  funds: 9999999
+  stockPortfolio:
+    ownedShares:
+      INTC: 9874
+      MSFT: 10923
+      TSLA: 134
+      ADBE: 1249
+      FB: 103985
+- id: "bot3"
+  name: "Bob Johnson"
+  funds: 120000
+  stockPortfolio:
+    ownedShares:
+      NVDA: 35
+      AMD: 35
+      AAPL: 83
+      INTC: 456
+      MSFT: 83
+      TSLA: 38
+      FB: 17
+- id: "bot4"
+  name: "John Bobson"
+  funds: 150000
+  stockPortfolio:
+    ownedShares:
+      NVDA: 35
+      AMD: 35
+      MSFT: 83
+      TSLA: 38
+      ADBE: 72
+      FB: 17
+- id: "bot5"
+  name: "Mootje"
+  funds: 1000
+  stockPortfolio:
+    ownedShares:
+      NVDA: 4
+      AMD: 6
+      AAPL: 23
+      INTC: 8
+      TSLA: 5
+      ADBE: 7
+      FB: 13
+- id: "bot6"
+  name: "Neil Down"
+  funds: 69420
+  stockPortfolio:
+    ownedShares:
+      NVDA: 42
+      AMD: 47
+- id: "bot7"
+  name: "Ben Dover"
+  funds: 6000000
+  stockPortfolio:
+    ownedShares:
+      NVDA: 234
+      AMD: 7654
+      AAPL: 2345
+      INTC: 6134
+      MSFT: 7653
+      TSLA: 234
+      ADBE: 543
+      FB: 164
+- id: "bot8"
+  name: "Lorenzo von Matterhorn"
+  funds: 10000000
+  stockPortfolio:
+    ownedShares:
+      NVDA: 4250
+      AMD: 643
+      AAPL: 23423
+      INTC: 9874
+      MSFT: 3453
+      TSLA: 54645
+      ADBE: 234
+      FB: 234
+- id: "bot9"
+  name: "B. Nugel"
+  funds: 1
+  stockPortfolio:
+    ownedShares:
+      AOOP: 60000

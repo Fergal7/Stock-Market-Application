@@ -1,0 +1,67 @@
+name: Clarification
+description: Ask your TA for clarification about the assignments.
+title: "[Clarification]: "
+labels: ["clarification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment
+    attributes:
+      label: Assignment
+      description: What assignment are you asking about?
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: dropdown
+    id: read-reader
+    attributes:
+      label: Reader
+      description: Did you read the relevant chapters in the reader?
+      options:
+        - "Yes"
+        - "No"
+        - "NA"
+  - type: dropdown
+    id: saw-tut
+    attributes:
+      label: Watched Tutorial
+      description: Did you watch the relevant tutorial?
+      options:
+        - "Yes"
+        - "No"
+        - "NA"
+    validations:
+      required: true
+  - type: dropdown
+    id: read-doc
+    attributes:
+      label: Read the documentation
+      description: Did you read the documentation?
+      options:
+        - "Yes"
+        - "No"
+        - "NA"
+    validations:
+      required: true
+  - type: textarea
+    id: assignment-question
+    attributes:
+      label: Question
+      description: Provide a clear and concise description of your question.
+      placeholder: Provide a clear and concise description of your question.
+    validations:
+      required: true
+  - type: textarea
+    id: graphics
+    attributes:
+      label: Screenshots / diagram
+      description: If applicable (and useful), add screenshots (or a diagram) to help explain your problem.
+      placeholder: If applicable (and useful), add screenshots (or a diagram) to help explain your problem.
+    validations:
+      required: true

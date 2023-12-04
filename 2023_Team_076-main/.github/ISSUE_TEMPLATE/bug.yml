@@ -1,0 +1,52 @@
+name: Bug Help
+description: Request help with a bug in your project.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment-code-support
+    attributes:
+      label: Assignment
+      description: What assignment are you asking about?
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: dropdown
+    id: google-err
+    attributes:
+      label: Google the error
+      description: Did you Google the error?
+      options:
+        - "Yes"
+        - "No"
+        - "NA"
+    validations:
+      required: true
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Provide a clear and concise description of the bug in your code you need help with.
+      placeholder: Provide a clear and concise description of the bug in your code you need help with.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: If applicable, give clear instructions on how to reproduce the problem.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+        Expected behaviour: ...
+    validations:
+      required: true

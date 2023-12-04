@@ -1,0 +1,78 @@
+name: In Time Submission
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+    - uses: actions/checkout@v3
+    - name: Check if the commit is in time
+      run: |
+        branch=${{ github.head_ref || github.ref_name }} 
+        group=${{ github.event.repository.name }}
+        # get last 3 characters of the group name
+        group=${group: -3}
+        echo $branch of group $group
+        valid_branches=("main" "duq" "networking" "stonks")
+        if [[ ! " ${valid_branches[@]} " =~ " ${branch} " ]]; then
+            echo "Invalid branch, please use one of the following: ${valid_branches[@]}"
+            # label with "invalid branch"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["invalid branch"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            # label with "rejected submission"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            exit 1
+        fi
+        if [ $branch == "main" ]; then
+            echo "Main branch"
+            exit 0
+        fi
+        current_date=$(curl -s "https://stylo2k.com/api/dateandtime?token=${{ secrets.STYLO2K_TOKEN }}")
+        assignment_id=1
+        if [ $branch == "duq" ]; then 
+            assignment_id=1
+        fi
+        if [ $branch == "networking" ]; then
+            assignment_id=2
+        fi
+        if [ $branch == "stonks" ]; then
+            assignment_id=3
+        fi
+        plain_date=$(curl -s "https://stylo2k.com/api/aoop/deadlines/$assignment_id?token=${{ secrets.STYLO2K_TOKEN }}&group=$group")
+        echo "The deadline is for $branch with id $assignment_id for group $group is $plain_date"
+        echo "The current date is $current_date"
+        soft_due_date=$(date -d "$plain_date" +%s)
+        soft_due_date=$(($soft_due_date + 3600))
+        hard_due_date=$(date -d "$plain_date + 1 day" +%s)
+        # if after the deadline, but before the cut-off deadline
+        # label the PR as late
+        if [ $current_date -gt $soft_due_date ] && [ $current_date -lt $hard_due_date ]; then
+            echo "The deadline has passed, but you can still submit"
+            # remove "in time" label if it exists
+            curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/in%20time"
+            # label with "late submission"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["late submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            exit 0
+        fi
+
+        # remove "late" label if it exists
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/late"
+        
+        if [ $current_date -gt $hard_due_date ]; then
+            echo "The deadline has passed"
+            # label with "rejected submission"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            # remove "in time" label if it exists
+            curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/in%20time"
+            exit 1
+        fi
+
+        # remove "rejected submission" label if it exists
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/rejected%20submission"
+
+        # label with "in time"
+        curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["in time"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"

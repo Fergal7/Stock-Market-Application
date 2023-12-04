@@ -1,0 +1,46 @@
+name: Reschedule a demo
+description: Request to reschedule an upcoming demo. Note that if you missed a demo, it is too late to reschedule it.
+title: "[Demo Reschedule]: "
+labels: ["demo reschedule"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Rescheduling should be done as soon as possible and you need a good reason to do so. Rescheduling after you missed a demo is not possible.
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment
+    attributes:
+      label: Assignment
+      description: Provide the name of the assignment that you are requesting to reschedule the demo for.
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - Stonks (Final Project)
+    validations:
+      required: true
+  - type: input
+    id: original-date
+    attributes:
+      label: When was the demo originally supposed to be?
+      description: Provide the original date and time of the aforementioned demo.
+      placeholder: Provide the original date of the demo.
+  - type: input
+    id: reason
+    attributes:
+      label: Reason for needing to reschedule the demo?
+      description: Provide a clear explanation detailing why you would like to reschedule to demo.
+      placeholder: Provide a clear explanation detailing why you need to reschedule the demo.
+    validations:
+      required: true
+  - type: input
+    id: new-date
+    attributes:
+      label: When would you prefer the new demo to be?
+      description: Provide a new date and time. Note that this is only a preference; your TA might suggest a different time.
+      placeholder: Provide the new date of the demo.
+    validations:
+      required: true

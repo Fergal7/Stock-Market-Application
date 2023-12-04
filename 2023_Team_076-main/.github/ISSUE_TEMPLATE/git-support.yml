@@ -1,0 +1,35 @@
+name: Git Support
+description: Request help with your code/project.
+title: "[Git Support]: "
+labels: ["git support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment-code-support
+    attributes:
+      label: Assignment
+      description: What assignment are you asking about?
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Provide a clear and concise description of the problem in your code you need help with.
+      placeholder: Provide a clear and concise description of the problem in your code you need help with.
+    validations:
+      required: true
+  - type: textarea
+    id: what-done
+    attributes:
+      label: Steps taken
+      description: What have you tried so far? Provide the git commands if relevant.
+    validations:
+      required: true

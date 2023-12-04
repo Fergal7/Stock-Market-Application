@@ -1,0 +1,27 @@
+name: Request feedback
+description: Request your TA to give feedback on specifics in your code during the intermediate demo.
+title: "[Feedback Request]:"
+labels: ["feedback request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment
+    attributes:
+      label: Assignment
+      description: What assignment are you asking about?
+      options:
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: textarea
+    id: assignment-question
+    attributes:
+      label: Question
+      description: Provide a clear and concise description of what you would like feedback on.
+      placeholder: A clear and concise description of what you would like feedback on...
+    validations:
+      required: true

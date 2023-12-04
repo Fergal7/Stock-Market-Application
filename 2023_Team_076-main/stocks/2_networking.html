@@ -1,0 +1,806 @@
+<!DOCTYPE html><html><head>
+      <title>2_networking</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/niels/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="assignment-2-networking">Assignment 2: Networking</h1>
+
+<p>In this assignment, we will be adding networking functionality to the message queue. The main focus of this assignment is on good design and the decoupling, reusability, and maintainability of the individual components. This means that complexity-wise, this assignment is quite a bit more complex than the first one. As such, be sure to start early.</p>
+<p>Before you start, make sure that you have fully finished assignment 1, since this assignment is a continuation of it. Also familiarize yourself with the content on networking, concurrency, and the command pattern. <strong>Read through the entire assignment description first</strong>, so that you have an idea of what you have to do. Everything is not necessarily described in a step-by-step way. Try to first really understand everything; if necessary draw out all the components you will need. As with the previous assignment, we expect you to use test-driven development.</p>
+<h2 class="mume-header" id="deadlines">Deadlines</h2>
+
+<p>This project has two deadlines:</p>
+<ul>
+<li>
+<p><strong>Intermediate deadline</strong></p>
+<p>This is an optional deadline and provides you with an extra opportunity to get feedback on your code. If you create a pull request, we expect you to show up for the corresponding demo and this will be your opportunity to get some feedback on your progress. Again, this deadline is optional, but you are highly recommended to make use of it due to the complexity of the assignment. Try to complete as much as possible before this deadline. Your pull request doesn&apos;t need to pass the checks, since your pull request will be closed afterwards.</p>
+</li>
+<li>
+<p><strong>Final Deadline</strong></p>
+<p>This is the final deadline. Your entire program should be done at this point.</p>
+</li>
+</ul>
+<hr>
+<h1 class="mume-header" id="assignment-description">Assignment Description</h1>
+
+<hr>
+<h2 class="mume-header" id="part-1-networking">Part 1 - Networking</h2>
+
+<p>Start by opening the project and navigating to the <code>networking</code> module.<br>
+We want to focus on decoupling our application as much as possible, so we are going to construct our networking in such a way that it is not tightly coupled with any other modules in our project. As a matter of fact, the networking module should not depend on any other module within our project in any way.</p>
+<p>Networking is fundamentally about sending messages between client(s) and server(s). What to do with these messages has nothing to do with the networking, so we want to construct our networking infrastructure in such a way that we leave this up to whowever uses this networking module.</p>
+<p>There are many different things we can send between client and server. One of the options is to send objects. This can be very useful, but also limits the usability of our networking. We will not be able to communicate with other applications that are not written in Java, as these objects are serialized by the JVM. Another option is to simply send strings. This gives us a lot more flexibility, since we can represent any object by a string (e.g. JSON, YAML, or XML) and the writing and reading of objects to and from the network are no longer dependent on the JVM serialization, but instead on how we implement the <code>object -&gt; string</code> conversion (and vice versa). This conversion we can implement and utilize in various different applications, meaning that we can just as well communicate with applications written in other languages.</p>
+<p>For the string representation of objects, we will eventually be using JSON. This is an incredibly versatile data format that is very easy to implement. In the networking part, we don&apos;t need to worry about that though. All we need to worry about here is creating a client-server infrastructure that allows for the sending of strings. Should we then ever decide to start using a different format (e.g. YAML or XML), then we don&apos;t have to change any of our networking.</p>
+<p>Our networking will work over TCP and has the following requirements:</p>
+<p><strong>Client</strong></p>
+<ul>
+<li>A client should be able to connect to a server using an <code>InetSocketAddress</code> provided in its constructor.</li>
+<li>A client should be able to send <code>String</code> messages to the server.</li>
+<li>Once a client is running, it should be able to continuously receive <code>String</code> messages from the server.</li>
+</ul>
+<p><strong>Server</strong></p>
+<ul>
+<li>A server should be able to start up with a given port number.</li>
+<li>Once a server is running, it should be able to accept and handle multiple client connections.</li>
+<li>For each incoming client connection, the server should spawn a separate thread that handles the connection with that specific client. We will refer to this as a client handler.</li>
+</ul>
+<p><strong>Client Handler</strong></p>
+<ul>
+<li>Once a client handler is running, it should be able to continuously receive <code>String</code> messages from its connected client.</li>
+<li>The client handler should be able to send <code>String</code> messages to its connected client.</li>
+</ul>
+<h3 class="mume-header" id="design">Design</h3>
+
+<p>You may have noticed that we didn&apos;t mention anything about what to do with the messages. This is because we want the networking to be completely decoupled from everything else. As mentioned before: what we want to do with the messages has nothing to do with the networking; that is extremely application specific.</p>
+<p>So how do we keep our networking generic (not to be confused with generics), but still have a way of handling our messages? To do this we once again turn to the power of interfaces. Create an interface <code>MessageHandler</code> with a method <code>handleMessage(String message)</code>. This interface should be passed as a constructor argument to the client and client handler. That way, it is up to the developer to create an implementation of <code>MessageHandler</code>, which makes our networking completely decoupled from the functionality of handling the messages. As such, we can reuse this networking module in any application that works with sending String messages over the network; that&apos;s the dream!</p>
+<p>In some cases, you might want to send messages back as a response. Think of how you can augment the <code>handleMessage</code> method so that any implementation of <code>MessageHandler</code> will also be able to send messages back.</p>
+<blockquote>
+<p>Don&apos;t just blindly implement all the above. Try to understand why we do this!</p>
+</blockquote>
+<hr>
+<h2 class="mume-header" id="part-2-message-queue-networking">Part 2 - Message Queue Networking</h2>
+
+<p>Now it is time to integrate networking with our message queue. For this, we need a few ingredients. Once we have these ingredients, it is up to you to cook them into a beautiful network-flavored message <s>stew</s> queue.</p>
+<p>The requirements for this part are actually very simple:</p>
+<ul>
+<li>Allow a producer to put a message in a message queue running on a different machine.</li>
+<li>The messages should be communicated in JSON format using TCP.</li>
+</ul>
+<p>The difficulty lies in designing this in such a way that it is easy to use, easy to extend and easy to maintain. Everything beyond this point is there to help you design it in the best way possible. Before we start with the details of how to implement everything, let&apos;s first go over what we want to do. The names below are of course only a suggestion; you are free to come up with your own names. Here is how we want the interaction with the networked message queue to be.</p>
+<p><img src="images/networking_queue.png" alt="Beautiful Image"></p>
+<blockquote>
+<p>The response procedure is not displayed in the above image, since for this assignment we are not sending any responses. However, think about which steps it should go through.</p>
+</blockquote>
+<p>Note that the messages technically do not go directly to the server, but to the corresponding client handler instead.</p>
+<p>It is important to remember that we are still setting up the infrastructure. Think of it as if we are creating a library that other people will use eventually. That means that we are not creating any <code>main</code> methods in this assignment (just like it doesn&apos;t make sense for a data structure library to have a <code>main</code> method). That said, it is good to have an idea of what using our library would look like (roughly) from a user perspective.</p>
+<p>On the message queue side (server-side), a user should be able to write the following to start up a networked message queue:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token class-name">MessageQueue</span> messageQueue <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">PriorityBlockingMessageQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">NetworkServer</span> server <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">NetworkServer</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-new">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>where <code>...</code> is an implementation of the <code>MessageHandler</code> interface (more on this later).<br>
+On the producer side (client-side), a user should be able to write the following to start up a networked producer:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token class-name">NetworkClient</span> client <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">NetworkClient</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> serverPort<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-new">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Producer</span> producer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">NetworkProducer</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span>
+producer<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword keyword-new">new</span> <span class="token class-name">MqMessage</span><span class="token punctuation">(</span><span class="token string">&quot;Test Header&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Test Body&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Here <code>...</code> is once again an implementation of the <code>MessageHandler</code> interface.<br>
+The consumer side will be running in the same application as the message queue, so for that, we will be using the simple consumer implementation from the previous assignment:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token class-name">Consumer</span> consumer <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">SimpleConsumer</span><span class="token punctuation">(</span>messageQueue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">MQMessage</span> message <span class="token operator">=</span> consumer<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>Ultimately, by doing it this way, we now have a message queue that works over the network, while it doesn&apos;t change how the user interacts with it.</p>
+<blockquote>
+<p>Again, the code snippets above are just rough suggestions of what we <strong>eventually</strong> want to be able to do. In this assignment we are still setting up the infrastructure, so there is nothing to run yet. That means we do not expect any <code>main</code> methods in your program.</p>
+</blockquote>
+<blockquote>
+<p>Since there is not <code>main</code> method and no concrete way to test if everything works together, consider writing a simple integration test as demonstrated in the tutorial.</p>
+</blockquote>
+<h3 class="mume-header" id="json-messages">JSON Messages</h3>
+
+<p>Let&apos;s start by thinking of what messages we want to send. Our <code>networking</code> module allows for the sending of strings. We are going to be sending JSON representations of objects over the network. Throughout this project, all messages sent over the network will be of the message class type that you implemented in the first assignment.</p>
+<ul>
+<li>Create a method in your message class that converts it to a JSON string representation.</li>
+<li>Create a method in your message class that creates a new message object from a JSON string.</li>
+<li>You do not have to implement the JSON conversions yourself (although you can if you want to). Instead, you can use <a href="https://sites.google.com/site/gson/gson-user-guide">Gson</a> for this. Note that Gson can have some difficulties with records and the <code>LocalDateTime</code> class, so this is not as trivial as it was intended to be sadly. On the upside, this is now an opportunity to learn something about custom JSON serialization/deserialization. You can find an example in the 2022_Assignments repository.</li>
+</ul>
+<h3 class="mume-header" id="thread-safe-queue">Thread-safe queue</h3>
+
+<p>Since we are now working over the network, a queue may have multiple producers/consumers that can try to enqueue/dequeue at the exact same time. To prevent any issues with this, create one more implementation of <code>MessageQueue</code>. It should work exactly the same as the <code>OrderedMessageQueue</code> from the previous assignment (so messages should be ordered by their timestamp), except that it is now thread-safe. To do this, you can use the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/PriorityBlockingQueue.html">PriorityBlockingQueue</a> data structure.</p>
+<p>Note that any elements that we want to store in this priority queue should implement the <code>Comparable</code> interface. This is used to determine where to place the elements in the priority. Have a look at the documentation of <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html">Comparable</a> and make your message class implement it so that messages can be ordered by their timestamp.</p>
+<h3 class="mume-header" id="network-producer">Network Producer</h3>
+
+<p>At this point, we have the networking infrastructure in place to send strings over the network, we have a way of converting our messages into strings and we have a queue that is thread-safe to put the messages into. In other words, have almost all the ingredients.</p>
+<p>We do not want the user to be aware of any of the details that are going on behind the scenes when communicating with the message queue. It should not matter to the user whether the message queue is run locally or whether all communication is done over the network. Luckily, we have already defined the behavior of producers/consumers in the previous assignment via an interface. In other words, all we have to do is create a new implementation of this interface; this time one that does not work with a local reference, but over the network instead.</p>
+<p>For simplicity&apos;s sake, we will only be implementing the producer side over the network. That is: the producer will be communicating with the message queue over the network, and the consumer will still be communicating with the message queue via a reference. Implementing networking on the consumer side will be a bonus since this is significantly less trivial.</p>
+<p><strong>module-info</strong></p>
+<p>Now might be a good time to have a look at some of the <code>module-info</code> files. These files list the required dependencies of a module and also which parts of the module are available to other modules.<br>
+There are two important keywords here:</p>
+<ul>
+<li>If you want to use the <code>networking</code> package in the module <code>messagequeue</code>, then use the <code>exports</code> keyword and add the following to the <code>module-info</code> of the <code>networking</code> module:<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword keyword-exports">exports</span> <span class="token namespace">nl<span class="token punctuation">.</span>rug<span class="token punctuation">.</span>aoop<span class="token punctuation">.</span>networking</span> <span class="token keyword keyword-to">to</span> <span class="token namespace">messagequeue</span><span class="token punctuation">;</span>
+</pre>This does not include sub-packages. If your <code>networking</code> package has a sub-package, e.g. <code>util</code>, then you need to export that separately:<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword keyword-exports">exports</span> <span class="token namespace">nl<span class="token punctuation">.</span>rug<span class="token punctuation">.</span>aoop<span class="token punctuation">.</span>networking<span class="token punctuation">.</span>util</span> <span class="token keyword keyword-to">to</span> <span class="token namespace">messagequeue</span><span class="token punctuation">;</span>
+</pre>If anyone should be able to use the package in question, you can omit the <code>to ..</code> part.</li>
+<li>If a module requires reflection, then you need to <code>open</code> the package to said module. This is the case for Mockito and Gson:<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword keyword-opens">opens</span> <span class="token namespace">nl<span class="token punctuation">.</span>rug<span class="token punctuation">.</span>aoop<span class="token punctuation">.</span>messagequeue</span> <span class="token keyword keyword-to">to</span> <span class="token namespace">com<span class="token punctuation">.</span>google<span class="token punctuation">.</span>gson</span><span class="token punctuation">;</span>
+</pre>There are some comments in the <code>module-info</code> files as well that should help you with this. In general, if something goes wrong with the modules, look clearly at the error. This often suggests what is going wrong (e.g. module .. does not export .. to ..). IntelliJ sometimes also suggests fixes when you intend to use classes from a different module while you don&apos;t have the correct <code>module-info</code> config yet.</li>
+</ul>
+<p>Sometimes you can end up with module cycles. This means that module <code>A</code> requires module <code>B</code>, but module <code>B</code> also requires module <code>A</code>. If you encounter this, it generally indicates an issue in your design. If you are attempting to resolve this, make sure to update both the <code>module-info</code> and the <code>pom</code> file of a module if you are removing dependencies.</p>
+<h3 class="mume-header" id="handling-incoming-messages">Handling incoming messages</h3>
+
+<p>Let&apos;s start with the receiving of messages. Both the network client and server are continuously listening for incoming messages. We already have a <code>MessageHandler</code> interface that we have to pass to the client/server that allows the user to specify how the messages should be handled. A very common pattern with networking is that different messages should be handled in different ways (i.e. we are executing different pieces of code depending on the contents of a message).</p>
+<p>We could of course create an implementation of <code>MessageHandler</code> with a gigantic switch statement, but it goes without saying that that has numerous negative downsides. Luckily, there is a very useful design pattern that can help us with this: the command pattern. The command pattern will allow us to execute different pieces of code depending on the contents of the message.</p>
+<h4 class="mume-header" id="command-module">Command Module</h4>
+
+<p>Start by creating a generic (again, not to be confused with generics) implementation of the command pattern in the <code>command</code> module (not to be confused with this <a href="https://airandspace.si.edu/collection-objects/command-module-apollo-11/nasm_A19700102000">command module</a>). This means there should be a command handler and a <code>Command</code> interface. Give the <code>Command</code> interface a method <code>void execute(Map&lt;String, Object&gt; params)</code>. The idea behind the parameter map is that it consists of key-value pairs similar to JSON. It can be used to pass various arguments to the command. It is then up to the implementation of the command to extract the required parameters and cast them appropriately. Make sure to - as always - start with the tests first.</p>
+<p>The commands that the command handler should be defined by whoever uses this class. This will allow for easy testing of the class and makes the command handler very flexible. Think of a way how you can allow this.</p>
+<p>The <code>command</code> module will not contain much. Eventually, the actual implementation of the commands should not reside in this module, but in the module that the commands relate to. For example, once we start adding commands that work on the message queue, these commands should reside in the <code>message-queue</code> module. In other words: we only want other modules to depend on <code>command</code>; we do not want <code>command</code> to depend on other modules. That way the <code>command</code> module is an independent and reusable module.</p>
+<h4 class="mume-header" id="command-implementation">Command Implementation</h4>
+
+<p>Now that we have our <code>command</code> module, start by creating an implementation of <code>MessageHandler</code> that takes as its input a command handler. The <code>handleMessage</code> method should first convert the <code>String</code> message (a JSON message) into an actual message object. Once that is done, it can forward it to the command handler. The header of the message is then used as the name of the command.</p>
+<p>One of the issues usually encountered with the command pattern is that different commands might need different parameters. To handle this, we use the aforementioned parameter map that maps <code>String</code>s to <code>Object</code>s (i.e. maps the name that the parameter would otherwise have to the actual parameter value).</p>
+<p>The parameter map should contain the following:</p>
+<ul>
+<li>The header of the message</li>
+<li>The body of the message</li>
+<li>A reference to an interface that eventually allows the logic in the command to send back a message (remember that both a client and a client handler have the ability to send a message). This is where the extra parameter of the <code>handleMessage</code> comes in.</li>
+</ul>
+<p>In the case of the message queue (server-side), we only need a single command: <code>MqPutCommand</code>. This command is responsible for putting the <code>body</code> of the message into the message queue. We will assume the body of the message to again be a JSON string representation of a message (why we do this will become clear later), so the responsibility of the <code>MqPutCommand</code> is converting the <code>body</code> of the message into a message object and then enqueuing said message into the message queue. On the client side, we don&apos;t need any commands for now.</p>
+<h3 class="mume-header" id="producing-over-the-network">Producing over the network</h3>
+
+<p>So how do we go about invoking this <code>MqPutCommand</code>? The goal is to put a message in the message queue. We somehow need to let the server know that it should put the message in the message queue. We can do this by wrapping the message that we want to send in another message. This header then contains the name of the command:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword keyword-public">public</span> <span class="token class-name">NetworkMessage</span> <span class="token function">createPutMessage</span><span class="token punctuation">(</span><span class="token class-name">MqMessage</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">NetworkMessage</span><span class="token punctuation">(</span><span class="token string">&quot;MqPut&quot;</span><span class="token punctuation">,</span> message<span class="token punctuation">.</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p>This <code>NetworkMessage</code> also has a <code>header</code>, and a <code>body</code> and can be converted to/from JSON. The difference is that this class is not designed to be put in the message queue, but to be sent over the network. The advantage of using a separate class for this is not just that it is more readable, but also that we can augment it with more information that might be relevant to send over the networking without affecting the message queue messages.</p>
+<h3 class="mume-header" id="final-check">Final Check</h3>
+
+<p>If you have tested everything thoroughly, you should now have a working message queue that works over the network. Have a look at the requirements at the beginning of Part 2 to see whether your implementation can do this.</p>
+<p>Some of you may also get itchy to run some stuff. This is not necessarily a bad idea. while unit tests are useful to test the individual components, they do not test the actual integration between the components. We do not expect you to write integration tests of any sort, but it might be worth running the message queue and consumer in one application, and the producer in another application. Verify that the producer can put something in the message queue.</p>
+<h2 class="mume-header" id="bonus">Bonus</h2>
+
+<p>For the bonus, implement a <code>NetworkConsumer</code> that communicates with the message queue over the network.</p>
+<p>You can also earn a 0.5 bonus by implementing some basic integration testing.</p>
+<h1 class="mume-header" id="questions">Questions</h1>
+
+<p>For every assignment, there are a number of questions that you have to answer. These can be found in a file called <code>2_questions.md</code>. The quality of your answers influences your grade. You should provide your answers in the <code>2_questions.md</code> file as well. These questions might also be asked during the demos and can alter your obtained grade!</p>
+<h1 class="mume-header" id="peer-evaluation">Peer Evaluation</h1>
+
+<p>For us to get an idea of how the group work went, you need to fill in a peer evaluation form. In this form, you will evaluate both yourself and your partner. We will look at this form to determine whether there are any significant issues with the group work. As a general tip: communicate clearly and often with each other and try to work together in person whenever you can.</p>
+<p>You can find this form on BrightSpace. For this assignment, there are two forms: one for the intermediate deadline and one for the final deadline. Filling in <strong>both</strong> of these forms is <strong>mandatory</strong> (regardless of whether you decide to make use of the optional deadline or not), so don&apos;t forget it. The deadline for filling in the first form is one day after the intermediate deadline, and the deadline for the second form is one day after the final deadline.</p>
+<h1 class="mume-header" id="handing-in-grading">Handing in + Grading</h1>
+
+<p>To hand in your work, you have to create a pull request in your repository on GitHub. However, before you do this, verify the following:</p>
+<ul>
+<li>All your work is on GitHub;</li>
+<li>You followed the project structure we provided correctly;</li>
+<li>Your test methods are <code>public</code>;</li>
+<li>Running <code>mvn clean test</code> builds your project successfully and runs all your tests.</li>
+</ul>
+<p>Once you have verified all of the above, you can create a pull request from the <code>networking</code> branch into the <code>main</code> branch. Make sure that a green checkmark appears next to your pull request.</p>
+<p>The point distribution for your grade will look as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th style="text-align:center">Max points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Functionality</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>Design</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>Documentation &amp; Code Quality</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Answers to the questions</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>Bonus</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p>More information about handing in can be found in the <code>GitHub Manual</code> on BrightSpace.</p>
+<h1 class="mume-header" id="checkstyle">Checkstyle</h1>
+
+<p>Below you can find a table with all of the checks performed by GitHub. Your code should pass all of these checks for your pull request to be accepted. You do not need to read through every single check, but you can use this table to quickly find the documentation when you encounter a given checkstyle violation. In addition to the checks below, it will also check whether your program actually compiles properly and passes all tests.</p>
+<blockquote>
+<p>One final warning: don&apos;t postpone running these checks until a few minutes before the deadline. It might take quite some time to fix all of them.</p>
+</blockquote>
+<h2 class="mume-header" id="general">General</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LineLength">LineLength</a></td>
+<td>Lines cannot be longer than 120 characters</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#FileLength">FileLength</a></td>
+<td>Files cannot be longer than 400 lines. Note that this is the absolute maximum. Without including Javadoc, strive for at most 200.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="code-quality">Code Quality</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#MethodLength">MethodLength</a></td>
+<td>Methods can have a maximum length of 30 lines. Note that this is the absolute maximum. You should strive for a maximum of ~20 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#LambdaBodyLength">LambdaBodyLength</a></td>
+<td>Lambda bodies can have a maximum size of 15 lines.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyBlock">EmptyBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#LeftCurly">LeftCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#RightCurly">RightCurly</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#NeedBraces">NeedBraces</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DeclarationOrder">DeclarationOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#FallThrough">FallThrough</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalCatch">IllegalCatch</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalThrows">IllegalThrows</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalToken">IllegalToken</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#IllegalType">IllegalType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#InnerAssignment">InnerAssignment</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#MultipleStringLiterals">MultipleStringLiterals</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NoClone">NoClone</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#ReturnCount">ReturnCount</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterOuterTypeDeclaration">UnnecessarySemicolonAfterOuterTypeDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">UnnecessarySemicolonAfterTypeMemberDeclaration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInEnumeration">UnnecessarySemicolonInEnumeration</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#UnnecessarySemicolonInTryWithResources">UnnecessarySemicolonInTryWithResources</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">UnnecessaryCheckstyleLink</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InnerTypeLast">InnerTypeLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#InterfaceIsType">InterfaceIsType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#MutableException">MutableException</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#ModifierOrder">ModifierOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_modifier.html#RedundantModifier">RedundantModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_annotation.html#MissingOverride">MissingOverride</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForInitializerPad">EmptyForInitializerPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#GenericWhitespace">GenericWhitespace</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#MethodParamPad">MethodParamPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#RedundantImport">RedundantImport</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_imports.html#UnusedImports">UnusedImports</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#Indentation">Indentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#ConstantName">ConstantName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#DefaultComesLast">DefaultComesLast</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#InvalidJavadocPosition">InvalidJavadocPosition</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#MethodName">MethodName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
+<td>Maximum of 3 nested if-statements.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_naming.html#TypeName">TypeName</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_sizes.html#ParameterNumber">ParameterNumber</a></td>
+<td>Maximum of 7 parameters.</td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_design.html#VisibilityModifier">VisibilityModifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_coding.html#AvoidNoArgumentSuperConstructorCall">AvoidNoArgumentSuperConstructorCall</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="javadoc">Javadoc</h2>
+
+<table>
+<thead>
+<tr>
+<th>Performed Check</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocType">JavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocType">MissingJavadocType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocContentLocation">JavadocContentLocationCheck</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocBlockTagLocation">JavadocBlockTagLocation</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingLeadingAsterisk">JavadocMissingLeadingAsterisk</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://checkstyle.sourceforge.io/config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -1,0 +1,74 @@
+name : Auto assign TA
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get collaborators
+      id: collaborators
+      # use github api to get all collaborators of the repo
+      run: |
+        # exclude the logins
+        exclude_logins=("github-actions[bot]" "lazovik" "feitosa-daniel" "andrewlalis" "Heerkog" "reinsmedinga" "Erblin-Ibrahimi" "Stylo2k" "BugelNiels" "taars-bot")
+        # get all collaborators
+        collaborators=$(curl -H "Authorization: Bearer ${{secrets.OWNER_TOKEN}}" -s "https://api.github.com/repos/${{ github.repository }}/collaborators?per_page=100" | jq -r '.[].login')
+        
+        filtered_collaborators=()
+
+        # filter out the excluded logins
+        for collaborator in ${collaborators[@]}; do
+            if [[ ! " ${exclude_logins[@]} " =~ " ${collaborator} " ]]; then
+                filtered_collaborators+=($collaborator)
+            fi
+        done
+
+        whiteList=(
+        akr115
+        AndrewRutherfoord
+        annav336
+        laexdt
+        fabiancuza
+        Jameeehhhh
+        kxv26
+        kakka0903
+        KonstantinosChasiotis	
+        oscardef
+        d33dler
+        MakeNEnjoy
+        Serbbi
+        PolakPL2002
+        )
+
+
+        final_collaborators=()
+
+        # add the whitelisted logins to the final list
+        for collaborator in ${filtered_collaborators[@]}; do
+            if [[ " ${whiteList[@]} " =~ " ${collaborator} " ]]; then
+                final_collaborators+=($collaborator)
+            fi
+        done
+
+        # make it a list of strings separated by , if the length is > 2
+        if [ ${#final_collaborators[@]} -gt 2 ]; then
+            final_collaborators=$(printf ",%s" "${final_collaborators[@]}")
+            final_collaborators=${final_collaborators:1}
+        fi
+
+        echo "final collaborators: ${final_collaborators[@]}"
+
+
+        # assign the collaborators to the output
+        {
+          echo 'collaborators<<EOF'
+          echo ${final_collaborators[@]}
+          echo EOF
+        } >> $GITHUB_OUTPUT
+    - name: Assign TA
+      uses: pozil/auto-assign-issue@v1.12.0
+      with:
+        assignees: ${{ steps.collaborators.outputs.collaborators }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}

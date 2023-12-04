@@ -1,0 +1,42 @@
+name: Deadline extension request
+description: Request a deadline extension for an assignment.
+title: "[Deadline Extension]: "
+labels: ["deadline extension"]
+assignees:
+  - 'Stylo2k'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Note that in case you are requesting a deadline extension less than 24 hours in advance of the deadline; it will not be granted.
+  - type: markdown
+    attributes:
+      value: |
+        Make sure to tag your TA with @ mentions, so they get notified!
+  - type: dropdown
+    id: assignment
+    attributes:
+      label: Assignment
+      description: What assignment would the deadline extension be for?
+      options:
+        - DUQ (Assignment 1)
+        - Networking (Assignment 2)
+        - STONKS (Final Project)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Explanation
+      description: Provide a clear explanation detailing why you need a deadline extension. Note that deadline extensions are only granted in exceptional scenarios.
+      placeholder: Provide a clear explanation detailing why you need a deadline extension. Note that deadline extensions are only granted in exceptional scenarios.
+    validations:
+      required: true
+  - type: textarea
+    id: reason-deadline
+    attributes:
+      label: Days requested
+      description: How many extra hours/days are you requesting?
+      placeholder: Simply provide a number of days here, including the final date.
+    validations:
+      required: true

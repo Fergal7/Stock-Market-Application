@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  frontend:
+    container_name: web-frontend
+    image: stylo2k/stonks-frontend:latest
+    ports:
+      - 3000:3000
+    environment:
+      - VIEW_HTTP_PORT=${VIEW_HTTP_PORT}
+
+  stock-application:
+    container_name: stock-application
+    build:
+      context: ./stocks
+      dockerfile: stockApp.Dockerfile
+    ports:
+      - ${VIEW_HTTP_PORT}:${VIEW_HTTP_PORT}
+      - ${STOCK_EXCHANGE_PORT}:${STOCK_EXCHANGE_PORT}
+    healthcheck:
+      test: "curl -f localhost:${VIEW_HTTP_PORT}"
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    environment:
+      - VIEW_HTTP_PORT=${VIEW_HTTP_PORT}
+      - STOCK_EXCHANGE_PORT=${STOCK_EXCHANGE_PORT}
+
+  trader-application:
+    container_name: trader-application
+    depends_on:
+      stock-application:
+        condition: service_healthy
+    build:
+      context: ./stocks
+      dockerfile: traderApp.Dockerfile
+    environment:
+      - STOCK_EXCHANGE_HOST=stock-application
+      - STOCK_EXCHANGE_PORT=${STOCK_EXCHANGE_PORT}

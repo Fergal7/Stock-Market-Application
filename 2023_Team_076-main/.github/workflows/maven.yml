@@ -1,0 +1,109 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # First step to checkout the repository.
+    - uses: actions/checkout@v3
+    # Second step to setup JDK 17 as per GitHub's provided "setup-java" action.
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Valid branch
+      run: |
+        branch=${{ github.head_ref || github.ref_name }} 
+        valid_branches=("main" "duq" "networking" "stonks")
+        if [[ ! " ${valid_branches[@]} " =~ " ${branch} " ]]; then
+            echo "Invalid branch, please use one of the following: ${valid_branches[@]}"
+            # label with "invalid branch"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["invalid branch"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            # label with "rejected submission"
+            curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+            exit 1
+        fi
+        if [ $branch == "main" ]; then
+            echo "Main branch"
+            exit 0
+        fi
+        if [ $branch == "duq" ]; then 
+            # if there is no folder called "duq", exit with error and label "broken folder structure" and "rejected submission"
+            if [ ! -d "stocks/message-queue" ]; then
+                # remove "passed checkstyle"
+                curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/passed%20checkstyle"
+                echo "Folder structure is broken, please make sure you have a folder called duq"
+                # label with "broken folder structure"
+                curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["broken folder structure"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+                # label with "rejected submission"
+                curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+                exit 1
+            fi
+        fi
+
+        if [ $branch == "networking" ]; then
+            # if there is no folder called "networking", exit with error and label "broken folder structure" and "rejected submission"
+            if [ ! -d "stocks/networking" ]; then
+                # remove "passed checkstyle"
+                curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/passed%20checkstyle"
+                echo "Folder structure is broken, please make sure you have a folder called networking"
+                # label with "broken folder structure"
+                curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["broken folder structure"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+                # label with "rejected submission"
+                curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+                exit 1
+            fi
+        fi
+
+        # remove "broken folder structure" label if it exists and "rejected submission" label if it exists
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/broken%20folder%20structure"
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/rejected%20submission"
+
+    
+    # Third step is to finally run our maven command. Note -B to run in "batch mode", which means no color output.
+    - name: Build with Maven
+      run: |
+        branch=${{ github.head_ref || github.ref_name }} 
+        if [ $branch == "main" ]; then
+            echo "Main branch"
+            exit 0
+        fi
+
+        for projectDir in stocks; do
+            if [ -d "$projectDir" ]; then
+                echo "Building project $projectDir"                
+                mvn -B test --file $projectDir/pom.xml
+            else
+                echo "Skipping project $projectDir because directory doesn't exist."
+            fi
+        done
+    - if: ${{ failure() }}
+      run: |
+        # remove "passed checkstyle"
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/passed%20checkstyle"
+        echo "Build failed for project $projectDir"
+        curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["failed checkstyle"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+        # label with "rejected submission"
+        curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["rejected submission"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+        exit 1
+    - if: ${{ success() }}
+      run: |
+        #remove "failed checkstyle"
+        curl -X DELETE -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/failed%20checkstyle"
+        # label with "passed checkstyle"
+        curl -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["passed checkstyle"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels"
+
+
